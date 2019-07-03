@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AppService } from './app.service';
+import { map, tap } from 'rxjs/operators';
+import { ItemModel } from './item.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'change-detection-talk';
+
+  options = [
+    3,
+    30,
+    300,
+    3000
+  ];
+
+  items$ = this.appService.items$;
+
+  constructor(private appService: AppService) {
+  }
+
+  setNumItems(N: number) {
+    this.appService.setNumItems(N);
+  }
+
 }
