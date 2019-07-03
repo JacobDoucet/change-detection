@@ -1,3 +1,8 @@
-<div class="form-control w-100 p-0">
-  <input class="form-control bg-secondary" [(ngModel)]="item.name" [class.bg-warning]="dirty">
+<div class="form-group w-100 p-0">
+  <div class="form-control bg-secondary text-white w-75 float-left text-truncate"
+    [class.bg-warning]="dirty"
+    [class.text-dark]="dirty">{{ item.name }}</div>
+  <button class="form-control float-left w-25" (click)="clickRandomizeName()">
+    <span class="fa fa-sync"></span>
+  </button>
 </div>

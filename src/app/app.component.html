@@ -1,9 +1,9 @@
 <div class="container text-light">
   <div class="row flex-row justify-content-around">
 
-    <ng-container *ngFor="let N of options">
-      <button class="col col-2 btn btn-outline-light" (click)="setNumItems(N)">
-        <h3>{{ N }}</h3>
+    <ng-container *ngFor="let N of itemCollectionSizeOptions">
+      <button class="col col-2 btn btn-lg btn-outline-light" (click)="newItemCollection(N)">
+        {{ N }}
       </button>
     </ng-container>
 
@@ -12,6 +12,10 @@
   <div class="row">
     <div class="col col-4 p-2" *ngFor="let item of items$ | async">
       <app-item [item]="item"></app-item>
+      <br>
+      <div class="float-left">
+        <app-stringified-item [item]="item | json"></app-stringified-item>
+      </div>
     </div>
   </div>
 

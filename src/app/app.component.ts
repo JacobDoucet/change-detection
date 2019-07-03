@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { map, tap } from 'rxjs/operators';
-import { ItemModel } from './item.model';
+import { ItemModel } from './item';
 
 @Component({
   selector: 'app-root',
@@ -10,20 +10,15 @@ import { ItemModel } from './item.model';
 })
 export class AppComponent {
 
-  options = [
-    3,
-    30,
-    300,
-    600
-  ];
+  itemCollectionSizeOptions = [ 3, 30, 300, 600 ];
 
   items$ = this.appService.items$;
 
   constructor(private appService: AppService) {
   }
 
-  setNumItems(N: number) {
-    this.appService.setNumItems(N);
+  newItemCollection(size: number) {
+    this.appService.newItemCollection(size);
   }
 
 }
