@@ -13,6 +13,7 @@ export class AppService {
 
   constructor() {
     this.items$.pipe(
+      tap(console.log),
       map((items: Array<ItemModel>) => items.length),
       tap((N) => console.log(`Emitted ${N} items.`))
     ).subscribe();

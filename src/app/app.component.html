@@ -10,9 +10,9 @@
   </div>
 
   <div class="row">
-    <ng-container *ngFor="let item of items$ | async">
-      <app-item class="col col-4" [item]="item"></app-item>
-    </ng-container>
+    <div class="col col-4 p-2" *ngFor="let item of items$ | async">
+      <app-item [item]="item"></app-item>
+    </div>
   </div>
 
 </div>

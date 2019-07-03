@@ -14,7 +14,7 @@ export class AppComponent {
     3,
     30,
     300,
-    3000
+    600
   ];
 
   items$ = this.appService.items$;
