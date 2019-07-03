@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { getNewItem, ItemModel, randomizeName } from '../item';
+import { Component, Input, OnInit } from '@angular/core';
+import { compareItems, getNewItem, ItemModel, randomizeName } from '../item';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
 
@@ -14,9 +13,7 @@ export class ItemComponent implements OnInit {
 
   get dirty(): boolean {
     console.log('SLOW DOWN');
-    return Object.keys(this.item)
-      .map((key) => this.item[key] !== this.originalItem[key])
-      .reduce((acc, val) => acc && val, true);
+    return compareItems(this.item, this.originalItem);
   }
 
   constructor() { }

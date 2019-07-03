@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { getNewItemCollection, ItemModel } from './item';
+import { assignIds, getNewItemCollection, ItemModel } from './item';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,9 @@ export class AppService {
   readonly items$ = this.items.asObservable();
 
   newItemCollection(size: number) {
-    this.items.next(getNewItemCollection(size));
+    const items = getNewItemCollection(size);
+    assignIds(items);
+    this.items.next(items);
   }
 
 }
