@@ -1,0 +1,18 @@
+<div #container class="container-fluid p-4 border border-dark"
+     (mousemove)="onMouseMove($event)"
+     (mouseenter)="onMouseEnter()"
+     (mouseleave)="onMouseLeave()">
+
+  <div id="meter-container" class="border border-dark position-relative rounded d-flex align-items-end">
+
+    <div id="meter" class="border border-danger bg-danger w-100" [style.height]="height"></div>
+
+  </div>
+
+  <div class="float-right" *ngIf="heightEvalsDisplay">
+    Duration: <strong> {{ durationDisplay }} seconds</strong>
+    | Checks Done: <strong>{{ heightEvalsDisplay }}</strong>
+    | Rate: <strong>{{ rateDisplay }} checks/sec</strong>
+  </div>
+
+</div>

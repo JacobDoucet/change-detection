@@ -1,22 +1,10 @@
-<div class="container text-light">
-  <div class="row flex-row justify-content-around">
+<div class="container-fluid">
+  <nav class="navbar bg-light justify-content-around mb-2">
 
-    <ng-container *ngFor="let N of itemCollectionSizeOptions">
-      <button class="col col-2 btn btn-lg btn-outline-light" (click)="newItemCollection(N)">
-        {{ N }}
-      </button>
-    </ng-container>
+    <a class="btn btn-lg btn-outline-dark" *ngFor="let route of routes" [routerLink]="route.path">{{ route.data.title }}</a>
 
+  </nav>
+  <div class="container">
+    <router-outlet></router-outlet>
   </div>
-
-  <div class="row">
-    <div class="col col-4 p-2" *ngFor="let item of items$ | async">
-      <app-item [item]="item"></app-item>
-      <br>
-      <div class="float-left">
-        <app-stringified-item [item]="item | json"></app-stringified-item>
-      </div>
-    </div>
-  </div>
-
 </div>

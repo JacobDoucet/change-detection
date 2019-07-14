@@ -2,23 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { map, tap } from 'rxjs/operators';
 import { ItemModel } from './item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  itemCollectionSizeOptions = [ 3, 30, 300, 600 ];
+  routes = this.router.config.filter((route) => route.data && route.data.title);
 
-  items$ = this.appService.items$;
-
-  constructor(private appService: AppService) {
+  constructor(private router: Router) {
   }
 
-  newItemCollection(size: number) {
-    this.appService.newItemCollection(size);
+  ngOnInit(): void {
+    console.log(this.router.config);
   }
 
 }
