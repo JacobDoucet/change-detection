@@ -3,10 +3,10 @@ import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-item-collection',
-  templateUrl: './item-collection.component.html',
-  styleUrls: ['./item-collection.component.css']
+  templateUrl: './person-collection.component.html',
+  styleUrls: ['./person-collection.component.css']
 })
-export class ItemCollectionComponent {
+export class PersonCollectionComponent {
 
   itemCollectionSizeOptions = [ 3, 30, 300, 600 ];
 

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { assignIds, getNewItemCollection, ItemModel } from './item';
+import { assignIds, getNewItemCollection, PersonModel } from './person';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
 
-  private items: BehaviorSubject<Array<ItemModel>> = new BehaviorSubject([]);
+  private items: BehaviorSubject<Array<PersonModel>> = new BehaviorSubject([]);
   readonly items$ = this.items.asObservable();
 
   private dummyEvent = new Subject<void>();
@@ -17,10 +17,6 @@ export class AppService {
     const items = getNewItemCollection(size);
     assignIds(items);
     this.items.next(items);
-  }
-
-  triggerSummyEvent() {
-    this.dummyEvent.next();
   }
 
 }

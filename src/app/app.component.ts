@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { map, tap } from 'rxjs/operators';
-import { ItemModel } from './item';
+import { PersonModel } from './person';
 import { Router } from '@angular/router';
 
 @Component({

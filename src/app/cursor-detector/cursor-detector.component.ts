@@ -1,4 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { fromEvent, Observable, timer } from 'rxjs';
+import { tap } from 'rxjs/internal/operators/tap';
+import { debounce, debounceTime, map, throttleTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cursor-detector',
@@ -18,17 +21,7 @@ export class CursorDetectorComponent implements OnInit {
   durationDisplay = 0;
   rateDisplay = 0;
 
-  lastMousePosition: MouseEvent = null;
-
-  /**
-   * mousePositionAsRatioOfWidth
-   */
-  get mousePositionAsRatioOfWidth() {
-    if (!this.lastMousePosition) {
-      return 0;
-    }
-    return this.lastMousePosition.offsetX / this.container.nativeElement.offsetWidth;
-  }
+  mousePositionToWidthRatio = 0;
 
   constructor() { }
 
@@ -36,7 +29,7 @@ export class CursorDetectorComponent implements OnInit {
   }
 
   onMouseMove(event: MouseEvent) {
-    this.lastMousePosition = event;
+    this.mousePositionToWidthRatio = this.getMousePositionAsRatioOfWidth(event);
   }
 
   onMouseEnter() {
@@ -52,8 +45,23 @@ export class CursorDetectorComponent implements OnInit {
     this.rateDisplay = Math.round(this.heightEvalsDisplay * 1000 / this.durationDisplay) / 1000;
   }
 
+  getMousePositionAsRatioOfWidth(event: MouseEvent) {
+    if (!event) {
+      return 0;
+    }
+    return event.offsetX / this.container.nativeElement.offsetWidth;
+  }
+
   thereWasAChange() {
     this.changes += 1;
   }
 
 }
+
+/*
+ this.mousePositionToWidthRatio$ = fromEvent<MouseEvent>(this.container.nativeElement, 'mousemove')
+      .pipe(
+        throttleTime(16),
+        map((event) => this.getMousePositionAsRatioOfWidth(event))
+      );
+ */

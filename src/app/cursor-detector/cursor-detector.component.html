@@ -5,7 +5,7 @@
      (mouseleave)="onMouseLeave()">
 
   <div class="meter-container">
-    <app-meter class="h-100 w-100" [ratio]="mousePositionAsRatioOfWidth" (changes)="thereWasAChange()"></app-meter>
+    <app-meter class="h-100 w-100" [ratio]="mousePositionToWidthRatio" (changes)="thereWasAChange()"></app-meter>
   </div>
 
 </div>

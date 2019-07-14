@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ItemCollectionComponent } from './item-collection/item-collection.component';
+import { PersonCollectionComponent } from './person-collection/person-collection.component';
 import { HomeComponent } from './home/home.component';
 import { CursorDetectorComponent } from './cursor-detector/cursor-detector.component';
 
 export const routes: Routes = [
-  { path: 'items', component: ItemCollectionComponent, data: { title: 'Items' } },
+  { path: 'person', component: PersonCollectionComponent, data: { title: 'Person' } },
   { path: 'cursor', component: CursorDetectorComponent, data: { title: 'Cursor Detector' } },
   { path: '', component: HomeComponent }
 ];
