@@ -1,8 +1,8 @@
-#meter-container {
+.meter-container {
   width: 75px;
-  height: 600px;
+  height: 350px;
 }
 
-#meter {
-
+.active {
+  background-color: #B1BEF2;
 }

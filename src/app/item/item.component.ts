@@ -12,7 +12,7 @@ export class ItemComponent implements OnInit {
   private originalItem: ItemModel;
 
   get dirty(): boolean {
-    console.log('SLOW DOWN');
+    console.log(`get dirty(${this.originalItem.name} === ${this.item.name})`);
     return compareItems(this.item, this.originalItem);
   }
 

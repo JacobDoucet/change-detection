@@ -1,27 +1,34 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-cursor-detector',
   templateUrl: './cursor-detector.component.html',
-  styleUrls: ['./cursor-detector.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./cursor-detector.component.css']
 })
 export class CursorDetectorComponent implements OnInit {
 
   @ViewChild('container', { static: true }) container: ElementRef;
 
-  private heightEvals = 0;
+  isActive = false;
+
+  private changes = 0;
   private entertime = 0;
 
   heightEvalsDisplay = 0;
   durationDisplay = 0;
   rateDisplay = 0;
 
-  get height() {
-    return this.evaluateHeight();
-  }
-
   lastMousePosition: MouseEvent = null;
+
+  /**
+   * mousePositionAsRatioOfWidth
+   */
+  get mousePositionAsRatioOfWidth() {
+    if (!this.lastMousePosition) {
+      return 0;
+    }
+    return this.lastMousePosition.offsetX / this.container.nativeElement.offsetWidth;
+  }
 
   constructor() { }
 
@@ -33,27 +40,20 @@ export class CursorDetectorComponent implements OnInit {
   }
 
   onMouseEnter() {
-    this.heightEvals = 0;
+    this.isActive = true;
+    this.changes = 0;
     this.entertime = new Date().valueOf();
   }
 
   onMouseLeave() {
-    this.heightEvalsDisplay = this.heightEvals;
+    this.isActive = false;
+    this.heightEvalsDisplay = this.changes;
     this.durationDisplay = (new Date().valueOf() - this.entertime) / 1000;
     this.rateDisplay = Math.round(this.heightEvalsDisplay * 1000 / this.durationDisplay) / 1000;
   }
 
-  evaluateHeight() {
-    this.heightEvals += 1;
-    if (!this.lastMousePosition) {
-      return '0';
-    }
-    return getPercentage(this.lastMousePosition.clientX, this.container.nativeElement.offsetWidth);
+  thereWasAChange() {
+    this.changes += 1;
   }
 
 }
-
-function getPercentage(n, N) {
-  return `${(n / N) * 100}%`;
-}
-

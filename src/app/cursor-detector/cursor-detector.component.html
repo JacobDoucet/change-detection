@@ -1,18 +1,19 @@
-<div #container class="container-fluid p-4 border border-dark"
+<div #container class="container-fluid p-4 border rounded border-dark"
+     [class.active]="isActive"
      (mousemove)="onMouseMove($event)"
      (mouseenter)="onMouseEnter()"
      (mouseleave)="onMouseLeave()">
 
-  <div id="meter-container" class="border border-dark position-relative rounded d-flex align-items-end">
-
-    <div id="meter" class="border border-danger bg-danger w-100" [style.height]="height"></div>
-
+  <div class="meter-container">
+    <app-meter class="h-100 w-100" [ratio]="mousePositionAsRatioOfWidth" (changes)="thereWasAChange()"></app-meter>
   </div>
 
-  <div class="float-right" *ngIf="heightEvalsDisplay">
-    Duration: <strong> {{ durationDisplay }} seconds</strong>
-    | Checks Done: <strong>{{ heightEvalsDisplay }}</strong>
-    | Rate: <strong>{{ rateDisplay }} checks/sec</strong>
-  </div>
+</div>
 
+<div class="float-left position-relative">
+  <h3>
+    <strong>{{ heightEvalsDisplay }}</strong> changes
+    <br> <strong>{{ durationDisplay }}</strong> seconds
+    <br> <strong>{{ rateDisplay }}</strong> changes/sec
+  </h3>
 </div>

@@ -1,1 +1,10 @@
-<p>meter works!</p>
+<div class="border border-dark bg-light rounded p-1 h-100">
+
+  <div class="d-flex align-items-end h-100 w-100">
+    <div id="meter" class="border border-danger rounded bg-danger w-100"
+         [style.height]="percent"></div>
+  </div>
+
+</div>
+
+<strong>{{ percent }}</strong>
