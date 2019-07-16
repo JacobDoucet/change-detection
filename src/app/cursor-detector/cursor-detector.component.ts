@@ -21,21 +21,16 @@ export class CursorDetectorComponent implements OnInit {
   durationDisplay = 0;
   rateDisplay = 0;
 
-  mousePositionToWidthRatio = 0;
-  mousePositionToWidthRatio$: Observable<number>;
+  ratio = 0;
+  ratio$: Observable<number>;
 
   constructor() { }
 
   ngOnInit() {
-    this.mousePositionToWidthRatio$ = fromEvent<MouseEvent>(this.container.nativeElement, 'mousemove')
-      .pipe(
-        throttleTime(16),
-        map((event) => this.getMousePositionAsRatioOfWidth(event))
-      );
   }
 
   onMouseMove(event: MouseEvent) {
-    this.mousePositionToWidthRatio = this.getMousePositionAsRatioOfWidth(event);
+    this.ratio = this.getMousePositionAsRatioOfWidth(event);
   }
 
   onMouseEnter() {
@@ -65,7 +60,7 @@ export class CursorDetectorComponent implements OnInit {
 }
 
 /*
- this.mousePositionToWidthRatio$ = fromEvent<MouseEvent>(this.container.nativeElement, 'mousemove')
+ this.ratio$ = fromEvent<MouseEvent>(this.container.nativeElement, 'mousemove')
       .pipe(
         throttleTime(16),
         map((event) => this.getMousePositionAsRatioOfWidth(event))

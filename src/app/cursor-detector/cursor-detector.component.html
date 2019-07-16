@@ -1,10 +1,11 @@
 <div #container class="container-fluid p-4 border rounded border-dark"
      [class.active]="isActive"
+     (mousemove)="onMouseMove($event)"
      (mouseenter)="onMouseEnter()"
      (mouseleave)="onMouseLeave()">
 
   <div class="meter-container">
-    <app-meter class="h-100 w-100" [ratio]="mousePositionToWidthRatio$ | async" (changes)="thereWasAChange()"></app-meter>
+    <app-meter class="h-100 w-100" [ratio]="ratio" (changes)="thereWasAChange()"></app-meter>
   </div>
 
 </div>
