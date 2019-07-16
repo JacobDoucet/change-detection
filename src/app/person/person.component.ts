@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { comparePersons, getNewPerson, PersonModel, randomizeName } from '../person';
 
 @Component({
   selector: 'app-item',
   templateUrl: './person.component.html',
   styleUrls: ['./person.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PersonComponent implements OnInit {
 
